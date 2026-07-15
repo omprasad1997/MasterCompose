@@ -23,7 +23,7 @@ fun HomeScreen(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Welcome to Jetpack Compose")
+        Text("Welcome to Jetpack Compose-Lesson_1")
         Button(
             onClick = {}
         ) {
