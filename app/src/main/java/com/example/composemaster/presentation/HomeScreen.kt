@@ -23,11 +23,35 @@ fun HomeScreen(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Welcome to Jetpack Compose-Lesson_1")
-        Button(
-            onClick = {}
-        ) {
-            Text("Start Learning")
-        }
+        AppTitle()
+        WelcomeMessage()
+        StartButton()
+
+    }
+}
+
+@Composable
+fun AppTitle(){
+    Text(
+        text ="Compose Master"
+    )
+
+}
+
+@Composable
+fun WelcomeMessage(){
+    Text(
+        text = "Welcome to Jetpack Compose"
+    )
+}
+
+@Composable
+fun StartButton(){
+    Button(
+        onClick = {}
+    ) {
+        Text(
+            text = "Start Learning"
+        )
     }
 }
