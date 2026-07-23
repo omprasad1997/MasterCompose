@@ -77,6 +77,71 @@ If only WelcomeMessage changes?
   This is why you'll sometimes hear:
   "Compose can invoke a parent composable but skip unchanged child composables."
 
+Real Interview Scenario
+Interviewer:
+Why is Compose called a Declarative UI framework?
+A strong answer:
+Because in Compose we describe what the UI should look like for a given state instead of manually updating individual UI elements. When the state changes, Compose automatically recomposes the affected parts of the UI.
+That's a solid mid-to-senior level answer.
+
+Ultimate Memory Trick
+Remember this sentence:
+Imperative = Tell the UI what to do.(How)
+Declarative = Tell the UI what to be. (What)
+XML -> HOW
+Compose -> WHAT
+
+What is Imperative UI?
+* Imperative UI is an approach where the developer manually tells the system how to update the UI step by step. Every UI change, such as updating text or changing visibility, must be handled explicitly.
+
+What is Declarative UI?
+- Declarative UI is an approach where we describe what the UI should look like for the current state. When the state changes, the framework automatically updates the UI.
+
+
+Why is Compose called Declarative?
+* Compose is called declarative because we describe the UI based on state instead of manually updating individual UI elements. When the state changes, Compose automatically recomposes the affected UI.
+
+Follow-up Interview Question
+Interviewer:
+Why don't we manually refresh the screen in Compose?
+Expected answer:
+Because Compose observes state changes. When observable state changes, it automatically schedules recomposition for the affected composables.
+
+
+
+What is the role of State in Declarative UI?
+* State is the single source of truth in Compose. Composables read state, and whenever that state changes, Compose recomposes the affected UI to reflect the new state.
+
+Why is Compose easier to maintain than XML?
+* UI is always consistent with state.
+* Smaller reusable composables improve readability.
+* Less chance of forgetting a UI update.
+
+
+Why don't we call setText() in Compose?
+- In Compose, UI is generated from state instead of manipulating Views directly. When the state changes, Compose automatically updates the displayed text, so methods like setText() are unnecessary.
+
+What are the advantages of Declarative UI over Imperative UI?
+*  Less boilerplate
+*  Fewer manual UI updates
+*  Easier maintenance
+*  Better readability
+*  UI stays synchronized with state
+*  Kotlin-only UI development
+*  Reusable composables
+
+
+Interview Challenge (Senior Level)
+Suppose an interviewer asks:
+"If Compose is declarative, why do we still need Recomposition?"
+
+How would you answer?
+Take a moment to think before reading the expected answer.
+
+A strong answer would be:
+Because state can change over time. Declarative UI describes what the UI should look like for the current state, and Recomposition is the mechanism Compose uses to update only the affected parts of the UI whenever that state changes.
+
+Notice how Declarative UI describes the programming model, while Recomposition is the runtime mechanism that makes it work.
 
 
 
