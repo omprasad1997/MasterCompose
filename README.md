@@ -33,6 +33,49 @@ Whenever someone asks:
 Immediately think:
 Normal Function -> Transforms -> Composable Function -> Works with Runtime
 
+What is Composition?
+* Composition is the process where the Compose Runtime executes composable functions for the first time and builds the UI tree. This is called the Initial Composition.
+
+Follow-up
+Interviewer:
+Does Composition happen only once?
+Expected answer:
+No. Initial Composition happens once when the composable enters the Composition. After that, whenever state changes, Compose performs Recomposition for the affected composables.
+
+
+What is Recomposition?
+* Recomposition is the process where the Compose Runtime re-executes only the composables affected by state changes, updating only the necessary parts of the UI.
+
+
+What triggers Recomposition?
+* State changes trigger recomposition. Compose observes state objects, and when a state value changes, it schedules recomposition for the composables that read that state.
+
+Follow-up
+Interviewer:
+Does every state change recompose the whole screen?
+Expected answer:
+No. Compose recomposes only the composables that read the changed state.
+
+
+Why doesn't Compose redraw the whole screen?
+* Compose tracks which composables read a particular state. When that state changes, it recomposes only those composables instead of rebuilding the entire screen.
+
+
+Is Recomposition good or bad?
+* Recomposition is a normal and essential part of Compose. It keeps the UI in sync with state. However, unnecessary recompositions can affect performance and should be minimized.
+
+What is Initial Composition?
+* Initial Composition is the first execution of a composable when it enters the Composition. During this process, Compose builds the initial UI tree.
+
+
+How do you think Compose knows that only the counter text should change instead of rebuilding the whole screen?
+* Compose keeps track of which composables read a state value. When that state changes, Compose schedules recomposition only for those composables instead of recomposing the entire UI tree.
+
+If only WelcomeMessage changes?
+* Only WelcomeMessage() composables reexecute and update UI.
+  However, depending on parameters and stability, Compose may also invoke HomeScreen() to determine what changed, while still skipping children that don't need updates.
+  This is why you'll sometimes hear:
+  "Compose can invoke a parent composable but skip unchanged child composables."
 
 
 
