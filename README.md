@@ -169,7 +169,30 @@ What happens if mutableStateOf is removed?
 Does remember survive screen rotation? (Just guess—we'll learn the exact answer later.)
 - I guess no.
 
+## **Level 2**
+### Lesson 6 - State Reads, State Writes & The Recomposition Cycle
 
+What is a State Read?
+* A State Read occurs when a composable accesses the value of an observable state object. Compose records this dependency so it knows which composables depend on that state.
+
+What is a State Write?
+* A State Write occurs when the value of an observable state object is modified. This notifies the Compose Runtime, which may schedule recomposition for dependent composables.
+
+How does Compose know which composables depend on a state?
+* Compose records which composables read a particular state. When that state changes, the Compose Runtime uses those recorded dependencies to schedule recomposition for the affected composables.
+
+
+Why doesn't every composable recompose?
+* Because Compose tracks state reads. Only composables that have read the changed state become candidates for recomposition. Unaffected composables can be skipped.
+
+Can multiple composables read the same state?
+- Yes mutiple composable can read the same state.
+
+If two composables read the same state and that state changes, what happens?
+- Then compose schedules recompostion for those two composables and provide updated UI.
+
+What is the difference between reading state and writing state?
+* State Read means a composable accesses a state value, allowing Compose to record the dependency. State Write means the state value is modified, which notifies the Compose Runtime and may trigger recomposition.
 
 
 
