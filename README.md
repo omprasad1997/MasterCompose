@@ -143,7 +143,31 @@ Because state can change over time. Declarative UI describes what the UI should 
 
 Notice how Declarative UI describes the programming model, while Recomposition is the runtime mechanism that makes it work.
 
+What is State?
+* State is any data that can change over time and affects what is displayed on the UI.
+* e.g Counter, Username, loading
 
+Why doesn't a normal variable update the UI?
+* A normal variable is not observable. Compose doesn't know when its value changes, so it doesn't trigger recomposition.
+
+
+What is mutableStateOf?
+- mutableStateOf creates an observable state object. When its value changes, Compose is notified and schedules recomposition for composables that read that state.
+
+What is remember?
+- remember stores an object in the Composition so it survives recomposition instead of being recreated every time.
+
+Why do we need both remember and mutableStateOf?
+- remember preserves the state across recompositions, while mutableStateOf makes the state observable so Compose can trigger recomposition when it changes.
+
+What happens if remember is removed?
+- Then state value doesn’t store and every time it new state created and old value gets reset.
+
+What happens if mutableStateOf is removed?
+- Then state object won’t be observable object and it doesn’t trigger recomposition.
+
+Does remember survive screen rotation? (Just guess—we'll learn the exact answer later.)
+- I guess no.
 
 
 
