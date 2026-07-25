@@ -194,6 +194,47 @@ If two composables read the same state and that state changes, what happens?
 What is the difference between reading state and writing state?
 * State Read means a composable accesses a state value, allowing Compose to record the dependency. State Write means the state value is modified, which notifies the Compose Runtime and may trigger recomposition.
 
+### Lesson 7  - remember vs rememberSaveable
+
+Your Compose counter resets every time the user rotates the phone. How would you debug it, identify the cause, and fix it?
+* First, verify where the counter state is stored.
+* If it's using remember, I know it only survives recomposition, not Activity recreation.
+* Screen rotation recreates the Activity, so the Composition is recreated and the remembered state is lost.
+* If this is temporary UI state like a counter or search text, replace remember with rememberSaveable.
+* If the state belongs to the screen's business logic or comes from an API, move it to a ViewModel instead.
+
+
+Why does remember lose its value after screen rotation?
+- Remember stores state value in current composition when initially actiivity created. So after screen rotation current activity  gets destroyed and new activity created so new compostion happens so previous value remeber looses.
+
+What is Activity recreation?
+* Activity recreation is the process where Android destroys the current Activity and creates a new instance because of a configuration change (such as screen rotation or language change).
+
+What is rememberSaveable?
+- RememberSavable stores value in android saved state and survies configuration changes.
+
+How is rememberSaveable different from remember?
+- remeberSavable survies both recomposition and  configuration change and remember survies only recomposition.
+
+Should API responses be stored using rememberSaveable? Why?
+- No API reponses should not be stored using rememberSavable.
+* API data is usually large.
+* It belongs to the business/data layer.
+* rememberSaveable is intended for small UI state.
+* ViewModel is the appropriate place because it survives configuration changes and separates UI from business logic.
+
+
+Name five examples where rememberSaveable is a good choice.
+* Search text
+* Selected tab
+* Current page in a pager
+* Counter value
+* Form input (name, email)
+* Selected filter
+* Scroll position
+
+Can rememberSaveable save every object? If not, why?
+- It cannot automatically save every object. It supports types that Android's saved state can handle. For custom objects, you need to provide a Saver or use another appropriate state holder.
 
 
 
