@@ -289,3 +289,62 @@ Here's the second one:
 State should be owned by the Lowest Common Ancestor (LCA) of every composable that needs it.
 
 ![Revision1](screenshots/level1_level2.png)
+
+### Lesson 9  - Modifier Deep Dive
+
+
+What is a Modifier?
+* Modifier is an immutable object used to decorate, configure, or add behaviour to a composable without modifying the composable itself.
+
+Why did Google introduce Modifier?
+- Instead of adding to much parameter in constructor of composables it is not reusable and hard to maintain.
+* Reusability
+* Separation of concerns
+* Cleaner APIs
+
+
+Is Modifier mutable or immutable?
+- No, Modifier is immutable.
+
+What is a Modifier chain?
+* A Modifier Chain is a sequence of immutable modifier elements where each modifier wraps the previous one to add layout, drawing, or interaction behaviour.
+
+Why does Modifier order matter?
+- Each modifier wraps the previous modifier, so measurement, drawing, and input handling happen according to the chain.
+
+Does Modifier change the composable itself?
+- No it doesn’t change composable itself it just use to decorate and add behavoir to composable
+
+Why is Modifier reuse recommended?
+- Because on every propery when use in chaning then it creates new object always, so it can affect to perfomance as well.
+
+Give five commonly used modifiers.
+* fillMaxWidth()
+* fillMaxHeight()
+* fillMaxSize()
+* padding()
+* size()
+* background()
+* clickable()
+* clip()
+
+Modifier
+.padding(20.dp)
+.clickable()
+
+↓
+
+Clickable -> Padding ->Text
+
+✅ Entire padded area is clickable
+
+
+Modifier
+.clickable()
+.padding(20.dp)
+
+↓
+
+Padding ->Clickable->Text
+
+❌ Only Text area is clickable
