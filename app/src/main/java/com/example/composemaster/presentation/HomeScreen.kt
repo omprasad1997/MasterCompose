@@ -21,6 +21,8 @@ fun HomeScreen(
     modifier: Modifier = Modifier
 ) {
 
+    var count by rememberSaveable { mutableStateOf(0) }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -30,8 +32,7 @@ fun HomeScreen(
     ) {
         AppTitle()
         WelcomeMessage()
-        StartButton()
-
+        StartButton(count = count, onIncrement = { count++ })
     }
 }
 
@@ -51,12 +52,11 @@ fun WelcomeMessage(){
 }
 
 @Composable
-fun StartButton(){
-    var count by rememberSaveable { mutableStateOf(0) }
+fun StartButton(count:Int, onIncrement : () -> Unit){
 
     Text(text = "Count: $count")
 
-    Button(onClick = { count++ }) {
+    Button(onClick =  onIncrement ) {
         Text("Increment")
     }
 }

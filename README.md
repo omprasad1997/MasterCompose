@@ -236,8 +236,56 @@ Name five examples where rememberSaveable is a good choice.
 Can rememberSaveable save every object? If not, why?
 - It cannot automatically save every object. It supports types that Android's saved state can handle. For custom objects, you need to provide a Saver or use another appropriate state holder.
 
+### Lesson 8  - Stateful vs Stateless Composables(State Hoisting)
 
 
+What is a Stateful Composable?
+* A Stateful Composable owns and manages its own state internally.
+
+What is a Stateless Composable?
+- Statelss Composables doesn’t own state and it receives data through parameters and communicates through events callback
+
+What is State Hoisting?
+* State Hoisting is the process of moving state ownership from a child composable to its parent composable, passing state down and events back up through callbacks.
 
 
+Why does Google recommend Stateless Composables?
+- Because it doesn’t own any state so it can reusable and help in making consistent UI
+- Reusable
+- Easier to test
+- Better separation of concerns
+- Easier to maintain
 
+
+Explain the sentence: "State flows down, Events flow up."
+- State flows down - pass state from parent to child in downward direction
+- Events flow up - when event happen then callback executed in upward direction
+
+Should every state be hoisted? Why or why not?
+* No. Small UI-only state such as password visibility, animation progress, or expanded/collapsed state can remain inside the composable. Hoist state only when it needs to be shared or controlled by a parent.
+
+Give three examples where state should remain inside a composable.
+* Password visibility
+* Expanded card
+* Tooltip visibility
+* Animation state
+* Dropdown expanded state
+
+Give three examples where state should be hoisted.
+* Search query shared with a movie list
+* Login form (username & password managed by the parent)
+* Selected tab used by multiple composables
+* Current page in a pager
+* Shopping cart quantity displayed in multiple places
+
+### Compose Rule #2
+
+You learned your first important Compose rule yesterday:
+
+State flows down, Events flow up.
+
+Here's the second one:
+
+State should be owned by the Lowest Common Ancestor (LCA) of every composable that needs it.
+
+![Revision1](screenshots/level1_level2.png)
