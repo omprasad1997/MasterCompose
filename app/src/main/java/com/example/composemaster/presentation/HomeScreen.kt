@@ -28,17 +28,38 @@ fun HomeScreen(
 
     var count by rememberSaveable { mutableStateOf(0) }
 
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+//    Column(
+//        modifier = modifier
+//            .fillMaxSize()
+//            .padding(16.dp),
+//        verticalArrangement = Arrangement.spacedBy(16.dp),
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ) {
+//        AppTitle()
+//        WelcomeMessage()
+//        StartButton(count = count, onIncrement = { count++ })
+//    }
+
+    Row(
+        modifier = Modifier.fillMaxWidth()
     ) {
-        AppTitle()
-        WelcomeMessage()
-        StartButton(count = count, onIncrement = { count++ })
+
+        Button(
+            modifier = Modifier.weight(1f),
+            onClick = {}
+        ) {
+            Text("Accept")
+        }
+
+        Button(
+            modifier = Modifier.weight(1f),
+            onClick = {}
+        ) {
+            Text("Reject")
+        }
+
     }
+
 }
 
 @Composable

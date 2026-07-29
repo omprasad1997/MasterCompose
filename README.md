@@ -466,3 +466,31 @@ What is the difference between:
 * SpaceBetween - It defines space between children
 * SpaceAround - Each child gets equal space around itself.
 * SpaceEvenly - It defines space before, between & after children place
+
+## Lesson 12 - weight() Deep Dive
+
+What is weight()?
+- It tells parent(Row & Column) to distribute remaining allow space to weighted children in propotional ratio
+
+Why did Google introduce weight()?
+* To make proportional layouts easier without manually calculating widths or heights.
+
+How does weight() internally distribute space?
+- First it calculates fixed measured child size then from remaining space space it will distribute others childs in propotional rato
+
+Why are non-weight children measured first?
+- The parent must know how much space is already consumed before it can calculate the remaining space to distribute among weighted children.
+
+Why doesn't weight() work in Box?
+- Box dosen’t have any axis.
+- It stacks children
+
+Difference between weight() and fillMaxWidth()?
+- weight works with Row & coloumn, siblings, available remaining space
+- fillMaxWidth works with parents constraints, different type of layouts, doesn’t work with siblings
+
+What is fill = false?
+the allocated space still exists, but the child doesn't have to fill it.
+
+Give one real-world use case for weight().
+* Equal buttons
