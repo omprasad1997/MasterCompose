@@ -348,3 +348,32 @@ Modifier
 Padding ->Clickable->Text
 
 ❌ Only Text area is clickable
+
+### Lesson 10  - Compose Layout System (Constraints, Measure & Layout)
+
+
+What are the three phases of the Compose Layout System?
+- Three phases of compose layout system are measure, layout, draw
+
+What are Constraints?
+- Constraint defines minimum & maximum width & height parent allow to child to occupy.
+
+What happens during the Measure Phase?
+- Measure phase is where composable calculates its desired width & height within the given constraints.
+
+What happens during the Layout Phase?
+- Layout phase where composable defines where to place composable on screen i.e calculate x,y coordinate for composable with calulated measured size.
+
+What happens during the Draw Phase?
+- Draw phase where composables draws on the screen.
+
+Why does padding() change size?
+* Padding increases the space required by the composable during the Measure phase.
+
+
+Why doesn't background() change size?
+* Background only paints.
+
+How does fillMaxWidth() work?
+- It tells child that Occupy the maximum width allowed by the parent constraints.
+
