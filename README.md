@@ -377,3 +377,92 @@ Why doesn't background() change size?
 How does fillMaxWidth() work?
 - It tells child that Occupy the maximum width allowed by the parent constraints.
 
+## Lesson 11 - Row, Column & Box (Compose Layouts)
+
+What happens when you change SpaceEvenly to Center?
+- Then it will place in the center of the screen
+
+What happens when you change horizontalAlignment to Alignment.End?
+- Then it will place to the right side of the screen
+
+Where are A, B, and C placed?
+- Nothing is showin in screen it just blank
+
+Why do the texts overlap?
+- Because box stacks children on top of other if we didn’t mention position explicitly
+
+What is a Layout in Compose?
+- Layout is a composable whose job is to meause and place it children
+
+How does a Column arrange children?
+- Column arranges children vertically.
+
+How does a Row arrange children?
+- Row arranges children horizontally
+
+Why does a Box overlap its children?
+- Box stacks its children on the top of another
+
+What is the Main Axis?
+* The Main Axis is the primary direction in which children are laid out.
+* Arrangement is used on the Main Axis
+
+What is the Cross Axis?
+* the direction perpendicular to the Main Axis.
+* Alignment controls positioning along the Cross Axis.
+
+What is the difference between Arrangement and Alignment?
+- Arrangement works with Main Axis and Alignment works with Cross Axis
+
+In a Column, which property controls vertical spacing?
+- verticalArrangement
+
+In a Row, which property controls vertical positioning?
+- verticalAlignment
+
+When would you choose a Box instead of a Column?
+- When we want to place children on top of another
+
+Senior Interview Challenge
+
+Where will A appear?
+- It will apper Right side with position y = 0
+
+Where will B appear?
+- It will be near the middle  of the Column.
+
+Where will C appear?
+- It will be near the bottom of the Column.
+
+Which axis is controlled by Arrangement.SpaceBetween?
+- MainAxis
+
+Which axis is controlled by Alignment.End?
+- CrossAxis
+
+Explain the Measure → Layout → Draw process for this Column.
+- Column -> measured width & height for all its children -> check for positoning all A,B,C -> Draw All A,B,C
+
+Senior Interview Question ———>
+
+Column(
+modifier = Modifier.height(300.dp),
+verticalArrangement = Arrangement.SpaceEvenly
+) {
+Text("A")
+
+    Text("B")
+
+    Text("C")
+}
+
+If the total height of A, B, and C is 90.dp, how much free space remains?
+* Free Space = 300 - 90 = 210.dp
+
+Where does Arrangement.SpaceEvenly place that free space?
+- Before, Between and after comosable place
+
+What is the difference between:
+* SpaceBetween - It defines space between children
+* SpaceAround - Each child gets equal space around itself.
+* SpaceEvenly - It defines space before, between & after children place
