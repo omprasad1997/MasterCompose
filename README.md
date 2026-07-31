@@ -494,3 +494,31 @@ the allocated space still exists, but the child doesn't have to fill it.
 
 Give one real-world use case for weight().
 * Equal buttons
+
+## Lesson 13 - Spacer & Empty Space Management
+
+What is a Spacer?
+- Spacer is composable whose job is to add empty space in layout
+
+Why did Google introduce Spacer?
+- To provide more control over empty space in layout
+
+Does Spacer draw anything?
+- No
+
+Which phases does Spacer participate in?
+- Measure, Layout & Draw
+
+Difference between Spacer and padding?
+- Spacer has it own component & padding belongs component
+
+How does Spacer(weight = 1f) work internally?
+- Internally it will check how space remaining after measured for fixed size composable
+
+Difference between Spacer(weight = 1f) and Arrangement.SpaceBetween?
+- Spacer(weight = 1f) give more control over empty space in layout & Arrangment.SpaceBetween provide equal space between composable
+
+Give two real-world use cases for Spacer.
+- Top and Bottom button
+- Chat message layout
+- Profile and logut button
