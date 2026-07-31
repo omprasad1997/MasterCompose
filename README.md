@@ -522,3 +522,173 @@ Give two real-world use cases for Spacer.
 - Top and Bottom button
 - Chat message layout
 - Profile and logut button
+
+## Lesson 14 - BoxWithConstraints Deep Dive
+
+Exercise 1
+
+BoxWithConstraints {
+
+    Text(maxWidth.toString())
+
+}
+
+Where does maxWidth come from?
+- It comes from parent constraints.
+
+Can you access it outside BoxWithConstraints?
+- No, it will give compiler error
+
+Exercise 2
+
+BoxWithConstraints {
+
+    if(maxWidth < 500.dp){
+
+        Text("Compact")
+
+    }else{
+
+        Text("Expanded")
+
+    }
+
+}
+
+
+What happens if the parent width is 450.dp?
+- Then UI shows for compact size
+
+What happens if the parent width is 700.dp?
+- Then UI Show for Expanded size
+
+Exercise 3
+
+Which is better for deciding between phone and tablet layouts?
+
+BoxWithConstraints {
+if(maxWidth > 600.dp)
+}
+
+why?
+- Because BoxConstraints exposes parent contraints to use available space for its content but Local configuration works device , screen type
+
+What is BoxWithConstraints?
+- BoxWithConstraints is layout that exposes parent constraints it recieves so that its content can make decisions based on available space for layout
+
+Why did Google introduce it?
+* To build adaptive and responsive layouts based on available constraints instead of relying on device-specific checks.
+
+Difference between Box and BoxWithConstraints?
+- Box doesn’t expose parent constraints like max/min width & height but BoxWithConstraints does
+
+What are maxWidth and maxHeight?
+- maxWidth & maxHeight gives maximum width & height which parent constraint gives
+
+Does BoxWithConstraints change constraints?
+- No it doesn’t
+
+Why is BoxWithConstraints better than checking device type?
+- Because its can make decision for its content based on available space
+
+Difference between BoxWithConstraints and LocalConfiguration?
+- BoxWithConstraints works - parent constraints, space available
+- LocalConfiguration works - screen, device type
+
+Give two real-world use cases.
+- Netflix Movie poster UI in phone & tablet
+- Shopping app item descrpition UI in phone & tablet
+- video with comments
+
+
+Senior Interview Challenge
+
+What is maxWidth?
+- 500dp
+
+Which layout will be composed?
+- Row layout
+
+Why?
+-cause 500dp is greater than 400dp
+
+
+What happens if the width changes to 350.dp?
+- Then coloumn layout will be composed
+
+Explain the Measure → Layout → Draw process for this composable.
+* Step 1 — Measure
+  Parent sends constraints
+
+↓
+
+BoxWithConstraints receives them
+
+↓
+
+maxWidth = 500.dp becomes available inside the scope
+
+Step 2 — Composition Decision
+
+if(maxWidth > 400.dp)
+
+↓
+
+Compose Row
+
+Notice something important:
+The decision about whether to compose a Row or Column happens before measurement of those children.
+Then the chosen layout (Row in this case) measures its children.
+
+Step 3 — Layout
+
+Row places Image
+
+↓
+
+Row places Details
+
+Step 4 — Draw
+Draw Image
+
+↓
+
+Draw Details
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+🧠 Mentor Tip
+
+This lesson introduces an important Compose principle:
+
+Compose layouts should adapt to the space they're given, not make assumptions about the device they're running on.
+
+Think of it this way:
+
+* Row and Column decide how children are arranged.
+* weight() decides how remaining space is shared.
+* Spacer decides where empty space exists.
+* BoxWithConstraints helps your composable decide what UI to build based on the available space.
